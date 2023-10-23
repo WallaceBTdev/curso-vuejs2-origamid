@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>VueJS - Introdução</title>
+</head>
+
+<body>
+    <div id="app">
+        {{nome}}, {{idade}}, {{faculdade.possui}}
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app", // Elemento, elemento PAI
+            data: {
+                nome: "André Rafael",
+                idade: 29,
+                faculdade: {
+                    possui: "Sim",
+                    curso: "Design"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
