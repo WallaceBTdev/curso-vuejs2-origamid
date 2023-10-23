@@ -8,35 +8,28 @@
 </head>
 <body>
     <div id="app">
-        {{total}}
-        <button @click="incrementar">Incrementar</button>
-        <button @click="diminuir">diminuir</button>
-        <p>{{instrumento}}</p>
-        <button @click="mudarNome('Violão')">Violão</button>
-        <button @click="mudarNome('Guitarra')">Guitarra</button>
-        <button @click="verEvento">Evento</button>
+        {{empresa}}, {{produto}}
+    </div>
+
+    <div id="quadrado">
+        <p>Lado: {{lado}}</p>
+        <p>Perímetro: {{lado * 4}}</p>
+        <p>Área: : {{lado * lado}}</p>
     </div>
 
     <script>
         const vm = new Vue({
             el: "#app",
             data: {
-                total: 0,
-                instrumento: ""
-            },
-            methods: {
-                incrementar() {
-                    this.total++
-                },
-                diminuir() {
-                    this.total--
-                },
-                mudarNome(instrumento) {
-                    this.instrumento = instrumento
-                },
-                verEvento(event) {
-                    console.log(event)
-                }
+                empresa: "Apple",
+                produto: "iPhone"
+            }
+        })
+
+        const vm2 = new Vue({
+            el: "#quadrado",
+            data: {
+                lado: 30
             }
         })
     </script>

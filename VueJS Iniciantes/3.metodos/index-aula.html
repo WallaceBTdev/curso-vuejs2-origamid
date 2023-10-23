@@ -3,27 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VueJS - Data</title>
+    <title>VueJS - Métodos</title>
     <script src="./vue.js"></script>
 </head>
 <body>
     <div id="app">
-        {{logado}}
+        {{total}}
+        <button @click="incrementar">Incrementar</button>
+        <button @click="diminuir">diminuir</button>
+        <p>{{instrumento}}</p>
+        <button @click="mudarNome('Violão')">Violão</button>
+        <button @click="mudarNome('Guitarra')">Guitarra</button>
+        <button @click="verEvento">Evento</button>
     </div>
 
     <script>
         const vm = new Vue({
             el: "#app",
             data: {
-                logado: ""
+                total: 0,
+                instrumento: ""
+            },
+            methods: {
+                incrementar() {
+                    this.total++
+                    this.teste()
+                },
+                diminuir() {
+                    this.total--
+                },
+                mudarNome(instrumento) {
+                    this.instrumento = instrumento
+                },
+                verEvento(event) {
+                    console.log(event)
+                },
+                teste() {
+                    console.log("Método ativado")
+                }
             }
         })
-
-        setTimeout(() => {
-            vm.logado = "Sim"
-        }, 1000)
-
-        console.log(vm)
     </script>
 </body>
 </html>
