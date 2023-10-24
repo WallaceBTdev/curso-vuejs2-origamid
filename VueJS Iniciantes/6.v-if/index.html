@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS - v-if</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button :disabled="meuCarrinho === 7" @click="meuCarrinho++">Adicionar Produto</button>
+        <p>Carrinho: {{meuCarrinho}}</p>
+        <p v-show="meuCarrinho === 7">Não é possível adicionar mais produtos</p>
+    
+        <hr>
+
+        <p>Banana {{estoqueBanana}}</p>
+        <button v-show="estoqueBanana" @click="adicionarItem">+</button>
+        <button v-show="carrinho" @click="removerItem">-</button>
+        <p>Carrinho: {{carrinho}}</p>
+        <p v-show="estoqueBanana === 0">Não temos mais Bananas em estoque.</p>
+    
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                meuCarrinho: 0,
+                carrinho: 0,
+                estoqueBanana: 7
+            },
+            methods: {
+                adicionarItem() {
+                    this.carrinho++
+                    this.estoqueBanana--
+                },
+                removerItem() {
+                    this.carrinho--
+                    this.estoqueBanana++
+                }
+            }
+        })
+    </script>
+</body>
+</html>

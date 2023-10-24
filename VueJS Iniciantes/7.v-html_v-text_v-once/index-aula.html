@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS - v-if</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-html="link"></div>
+        <div>{{link}}</div>
+
+        <hr>
+
+        <div v-text="fruta"></div>
+        <div>{{fruta}}</div>
+
+        <hr>
+
+        <p v-once>Valor inicial: R$ {{total}}</p>
+        <button @click="gasto += 5">Comprar Banana R$ 5</button>
+        <p>Gasto: R$ {{gasto}}</p>
+        <p>Saldo: R$ {{total - gasto}}</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                link: "<a href='https://www.origamid.com'>Origamid</a>",
+                fruta: "Banana",
+                total: 150,
+                gasto: 0
+            },
+        })
+    </script>
+</body>
+</html>

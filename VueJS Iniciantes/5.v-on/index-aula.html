@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS - v-on</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <!-- v-on = @ -->
+    <div id="app">
+        <!-- <button v-on:click="handleClick">Clique Aqui</button> -->
+        <button @click="contador = contador + 100 / 2 * 5">Clique Aqui</button>
+        {{contador}}
+        <button @click="ativo = !ativo">Toggle</button>
+        {{ativo}}
+        <a href="#interno" @click.prevent.once="handleClick">Link Interno</a>
+        <input type="text" @keyup.f="handleClick">
+        <p @mousemove="handleMove">Esse é o mouse x: {{mouse.x}}</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                contador: 0,
+                ativo: true,
+                mouse: ""
+            },
+            methods: {
+                handleClick(event) {
+                    console.log(event.key)
+                },
+                handleMove(event) {
+                    this.mouse = event
+                }
+            }
+        })
+    </script>
+</body>
+</html>
