@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS - Arguments e Modifiers</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click.prevent>{{texto}}</button>
+        <ul>
+            <li v-for="(key, value) in info">{{value}}: {{key}}</li>
+        </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                info: {
+                    DIRETIVA: "v-on",
+                    ARGUMENTO: ":click",
+                    MODIFICADOR: ".prevent",
+                },
+                
+                texto: "v-on:click.prevent"
+            }
+        })
+    </script>
+</body>
+</html>
