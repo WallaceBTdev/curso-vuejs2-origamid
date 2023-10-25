@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS - Computed e Watch</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{preco - desconto}}</h1>
+        <p>{{total}}</p>
+
+        <hr>
+
+        <h1>Carros</h1>
+        <ul>
+            <li v-for="carro in carros">{{carro.marca}} - {{carro.cor}}</li>
+            <hr>
+            <p>Carros Azuis:</p>
+            <ul>
+                <li v-for="carro in carrosAzuis">{{carro.marca}} - {{carro.cor}}</li>
+
+            </ul>
+        </ul>
+        <button @click="removerCarro">Remover</button>
+
+        <hr>
+
+        <p>{{contador}}</p>
+        <button @click="contador++">Adicionar</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                preco: 59,
+                desconto: 10,
+                carros: [
+                    {
+                        marca: "VW",
+                        cor: "Azul"
+                    },
+                    {
+                        marca: "Ford",
+                        cor: "Preto"
+                    },
+                    {
+                        marca: "Tesla",
+                        cor: "Azul"
+                    },
+                ],
+                contador: 0
+            },
+            computed: {
+                total() {
+                    return "R$ " + (this.preco - this.desconto);
+                },
+                carrosAzuis() {
+                    return this.carros.filter(({cor}) => cor === "Azul")
+                }
+            },
+            methods: {
+                removerCarro() {
+                    this.carros.pop()
+                }
+            },
+            watch: {
+                contador(valorNovo, valorAntigo) {
+                    console.log(valorNovo)
+                    console.log(valorAntigo)
+                },
+                carros(valorNovo, valorAntigo) {
+                    console.log(valorNovo)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

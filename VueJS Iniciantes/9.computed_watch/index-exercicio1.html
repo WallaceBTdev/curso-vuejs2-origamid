@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS - Computed e Watch</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>Nome Completo: {{nomeCompleto}}</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                nome: "André",
+                sobrenome: "Rafael"
+            },
+            computed: {
+                nomeCompleto() {
+                    return `${this.nome} ${this.sobrenome}`
+                }
+            }
+        })
+    </script>
+</body>
+</html>
