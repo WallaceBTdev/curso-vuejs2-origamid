@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS - Class e Style</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Criação de botão personalizado</h1>
+
+        <h1>Desenvolvimento do professor:</h1>
+        <input type="color" v-model="btn.background">
+
+        <label for="width">Width</label>
+        <input type="text" id="width" v-model="btn.width">
+
+        <label for="height">Height</label>
+        <input type="text" id="height" v-model="btn.height">
+
+        <label for="fontSize">Font Size</label>
+        <input type="text" id="fontSize" v-model="btn.fontSize">
+
+        <label for="fontFamily">Font Family</label>
+        <input type="text" id="fontFamily" v-model="btn.fontFamily">
+
+        <a :style="btn" href="">Clique Aqui</a>
+
+        <hr>
+
+        <div>
+            <h2>Meu desenvolvimento:</h2>
+
+            <label>
+                width: <input v-model="width" type="text">
+            </label><br>
+            <label>
+                height: <input v-model="height" type="text">
+            </label><br>
+            <label>
+                font-size: <input v-model="fontSize" type="text">
+            </label><br>
+            <label>
+                font-family: <input v-model="fontFamily" type="text">
+            </label><br>
+            <label>
+                text-align: <input v-model="textAlign" type="text">
+            </label><br>
+            <label>
+                background: <input v-model="background" type="text">
+            </label><br>
+            <label>
+                color: <input v-model="color" type="text">
+            </label><br>
+            <label>
+                border-radius: <input v-model="borderRadius" type="text">
+            </label><br><br>
+            <button :style="estilo" @click="personalizar">Personalizar</button>
+        </div>
+
+        <hr>
+
+        <h1>Desafio Formulário</h1>
+
+        <form>
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" v-model="nome">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" v-model="email">
+            <label for="telefone">Telefone</label>
+            <input type="text" name="telefone" id="telefone" v-model="telefone">
+            <label for="mensagem">Mensagem</label>
+            <textarea name="mensagem" id="mensagem" v-model="mensagem"></textarea><br>
+            <input @click.prevent="enviarFormulario" type="submit">
+        </form>
+
+        <div>
+            <ul>
+                <li v-for="(value, key) in resultado">{{key}}: {{value}}</li>
+            </ul>
+        </div>
+
+    </div>
+    
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                width: "",
+                height: "",
+                fontSize: "",
+                fontFamily: "",
+                textAlign: "",
+                background: "",
+                color: "",
+                borderRadius: "",
+                estilo: {},
+
+                // Professor
+                btn: {
+                    background: "#000",
+                    width: "100px",
+                    height: "40px",
+                    fontSize: "20px",
+                    fontFamily: "monospace"
+                    },
+                
+                // Formulário
+                nome: "",
+                email: "",
+                telefone: "",
+                mensagem: "",
+                resultado: {}
+            },
+            methods: {
+                personalizar() {
+                    this.estilo = {
+                        width: `${this.width}px`,
+                        height: `${this.height}px`,
+                        fontSize: `${this.fontSize}px`,
+                        fontFamily: `${this.fontFamily}`,
+                        textAlign: `${this.textAlign}`,
+                        background: this.background,
+                        color: this.color,
+                        borderRadius: `${this.borderRadius}px`,
+                    }
+                },
+                enviarFormulario() {
+                    this.resultado = {
+                        nome: this.nome,
+                        email: this.email,
+                        telefone: this.telefone,
+                        mensagem: this.mensagem
+                    }
+                }
+            }
+        })
+    </script>
+
+    <style>
+        label {
+            display: block;
+        }
+        a {
+            margin-top: 30px;
+            display: block;
+        }
+    </style>
+</body>
+</html>

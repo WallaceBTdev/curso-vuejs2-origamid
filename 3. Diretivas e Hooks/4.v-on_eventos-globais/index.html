@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS - Class e Style</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <input @keyup="ativar" placeholder="Aperta alguma tecla">
+            <input @keyup.enter="ativar" placeholder="aperte ENTER">
+            <input @keyup.esc="ativar" placeholder="aperte ESC">
+            <input @keyup.up="ativar" placeholder="aperte SETA PARA CIMA">
+            <h3>Apertou a tecla: {{resultado}}</h3>
+        </div>
+
+        <hr>
+
+        <div>
+            <p @click="ativar2">Clique</p>
+            <p @click.alt="ativar2">Clique ALT</p>
+            <p @click.right="ativar2">Clique ESQUERDO</p>
+            <p @click.middle="ativar2">Clique MEIO</p>
+            <h3>Clicou: {{resultado2}}</h3>
+        </div>
+
+        <hr>
+
+        <div>
+            <p style="position: fixed">Scroll: {{totalScroll}}</p>
+        </div>
+    </div>
+    
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                resultado: "",
+                resultado2: "",
+                totalScroll: 0
+            },
+            methods: {
+                ativar(event) {
+                    this.resultado = event.key
+                },
+                ativar2(event) {
+                    this.resultado2 = event.target.innerText
+                    event.currentTarget.style.color = "blue"
+                },
+                handleScroll(event) {
+                    console.log(event)
+                    if(event.key === "Enter") {
+                        this.totalScroll = window.scrollY
+                    }
+                }
+            },
+            created() {
+                window.addEventListener("keyup", this.handleScroll)
+            }
+        })
+    </script>
+    <style>
+        body {
+            height: 2000px;
+        }
+    </style>
+</body>
+</html>

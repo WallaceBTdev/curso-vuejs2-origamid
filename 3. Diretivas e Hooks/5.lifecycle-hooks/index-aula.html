@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS - Class e Style</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{mensagem}}</p>
+        <button @click="contador++">{{contador}}</button>
+        <button @click="destruir">Destruir</button>
+        <div>{{github}}</div>
+    </div>
+    
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                mensagem: "Essa é uma mensagem",
+                github: {},
+                contador: 0
+            },
+            methods: {
+                puxarGithub() {
+                    fetch("https://api.github.com/users/origamid")
+                        .then(r => r.json())
+                        .then(r => { this.github = r})
+                },
+                destruir() {
+                    this.$destroy()
+                }
+            },
+            beforeCreate() {
+                console.log("===== BEFORE CREATE =====")
+                // Antes de ser criado
+                console.log("Antes da criação")
+                console.log(this.mensagem)
+                console.log("===== BEFORE CREATE =====")
+            },
+            created() {
+                console.log("===== CREATED =====")
+                // Após ser criado, já tem acesso a DATA, METHODS, etc...
+                // Sem acesso ao DOM (ex.: this.$el)
+                this.puxarGithub()
+                console.log("Elemento: ", this.$el)
+                console.log(this.mensagem)
+                console.log("Foi criado")
+                console.log("===== CREATED =====")
+            },
+            beforeMount() {
+                console.log("===== BEFORE MOUNT =====")
+                // Antes de ser montado
+                // Já tem acesso ao DOM mas não recebeu os dados de DATA
+                console.log("Elemento: ", this.$el)
+                console.log("===== BEFORE MOUNT =====")
+            },
+            mounted() {
+                console.log("===== MOUNTED =====")
+                // Tem acesso ao DOM com dados atualizados de DATA
+                console.log("Elemento: ", this.$el)
+                console.log("===== MOUNTED =====")
+            },
+            beforeUpdate() {
+                console.log("===== BEFORE UPDATE =====")
+                console.log(this.contador)
+                console.log("===== BEFORE UPDATE =====")
+            },
+            updated() {
+                console.log("===== UPDATED =====")
+                console.log(this.contador)
+                console.log("===== UPDATED =====")
+            },
+            beforeDestroy() {
+                console.log("===== BEFORE DESTROY =====")
+                console.log("Vai destruir")
+                console.log("===== BEFORE DESTROY =====")
+            },
+            destroyed() {
+                console.log("===== DESTROYED =====")
+                console.log("Destruiu")
+                console.log("===== DESTROYED =====")
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS - Class e Style</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(valor, chave) in github">{{chave}} - {{valor}}</li>
+        </ul>
+        <button @click="contador++">Adicionar {{contador}}</button>
+    </div>
+    
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                github: {},
+                contador: 0
+            },
+            methods: {
+                fetchGithub() {
+                    fetch("https://api.github.com/users/wallacemartinsti")
+                        .then(r => r.json())
+                        .then(r => this.github = r)
+                }
+            },
+            created() {
+                this.fetchGithub()
+            },
+            updated() {
+                document.title = this.contador
+            }
+            
+        })
+    </script>
+</body>
+</html>
